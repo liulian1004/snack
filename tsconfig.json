@@ -1,0 +1,53 @@
+{
+    // include: which ts file need to complier
+    // /** : any folder
+    //  /* : any file
+    // "include": [
+    //     "./src/**/*" // any doc under src
+    // ],
+    //exclude the file no need to complier
+    // the default file is : node_modules, bower_components, jspm_packages
+    // if only want to exclude these file, no need to write in the config file
+    // "exclude": [
+    //     "./src/fileName"
+    // ],
+    // extend the config file from the other config.json file
+   //"extends": "./src/configure.json",
+
+   //similar to include, only list the file name here ,not include folder
+    // "files": [
+    //     "*.ts"
+    // ],
+
+    "compilerOptions": {
+        "target": "ES2015" ,// js version, such as es5, es3, es2020,....
+        "module": "ES2015", // module version, such as commonjs,es2015,...
+        //"lib":["DOM"], // the third part library need to use in the browser, don't need to setup if running under browser, such as DOM, es6
+        "strict": true,
+        "noEmitOnError": true // don't complier when it's error
+    },
+    "outDir" :"./dist", // the folder to keep the complier js file
+    "outFile": "./dist/main.js", // let multi ts file complier into one js file if these file doesn't import other modules, not use as lot
+
+    "allowJs": false, // complier the js file, the default is false: don't complier js file
+
+    "checkJs": false ,//check the ts syntax in the js file, the default is false, don't check
+
+    "removeComments": false, // false: don't remove the comments from ts to js, default is false
+
+    "noEmit": true, // the default is false, true is don't create js.file after complier
+
+    "noEmitOnError": true, // the default is false, true is the don't create js.file if error when complier
+
+    "alwaysStrict": false, // the default is false, the syntax level is strict for js.file if it's true, otherwise need to write a syntax to set js.file as strict level
+
+    "noImplicitAny": true, // the default is false, the true is must write "any" if want to use any type in the ts file, better to set as true in case make mistake
+
+    "noImplicitThis": true, // the default is false, the true is to check "this" must be a certain type
+
+    "strictNullCheck": true, // the default is false, the true is to check that the object could be null
+ 
+    "strict" : false ,// the default is false, the true is all the strict rule is true, no need to setup other strict rule, recommend to set as true
+
+
+}
