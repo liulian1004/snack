@@ -8,9 +8,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    //告诉webpack不是用箭头函数
+    //告诉webpack不是用箭头函数,和const， ie 老版本不兼容const和arrow function
     environment: {
       arrowFunction: false,
+      const: false,
     },
   },
   //使用的插件

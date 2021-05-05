@@ -1,3 +1,9 @@
-
 import './styles/index.less';
-console.log(23);
+import control from "./modules/control";
+import Control from './modules/control';
+
+new Control();
+
+
+
+
