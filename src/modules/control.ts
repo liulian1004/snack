@@ -49,9 +49,6 @@ class Control{
     private move(){
         let X = this.snake.getHeadX();
         let Y = this.snake.getHeadY();
-        console.log("X:", X);
-        console.log("Y:", Y);
-        console.log("direction:", this.direction)
         switch(this.direction){
             case "ArrowUp":
             case "Up":
@@ -86,7 +83,6 @@ class Control{
         //every 300ms trigger move() , and move faster based on the level
         // so that the move will keep triggering
         if(this.isLive && !this.isPause){
-            console.log("time: ", 300-(this.scorePanel.level-1)*30)
              setTimeout(this.move.bind(this), 300-(this.scorePanel.level-1)*30)
         }
 
