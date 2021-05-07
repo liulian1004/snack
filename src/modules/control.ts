@@ -1,12 +1,13 @@
 
 import Snake from "./snake";
-import  Food from "./Food";
+import Food from "./Food";
 import ScorePanel from "./ScorePanel";
 
 class Control{
     snake: Snake;
     food: Food;
     scorePanel: ScorePanel;
+    isLive: boolean;
 
     //keep keyboard direction
     direction: string = '';
@@ -15,6 +16,7 @@ class Control{
         this.snake = new Snake();
         this.food = new Food();
         this.scorePanel = new ScorePanel();
+        this.isLive = true;
         this.init();
     }
 
@@ -64,12 +66,33 @@ class Control{
                 X += 10;
             break;
         }
-        this.snake.headX= X;
-       this.snake.headY = Y;
-        //every 300ms trigger move() 
-        // so that the move will keep triggering
-        setTimeout(this.move.bind(this), 300)
-    }
+        this.eat(X,Y);
 
+        try{
+            this.snake.headX = X;
+            this.snake.headY = Y;
+        }catch (e){
+            alert(e.message);
+            this.isLive = false;
+        }
+        
+        //every 300ms trigger move() , and move faster based on the level
+        // so that the move will keep triggering
+        if(this.isLive){
+             setTimeout(this.move.bind(this), 300-(this.scorePanel.level-1)*30)
+        }
+
+       
+    }
+    private eat(X:number, Y:number) {
+        if(this.food.X === X && this.food.Y === Y ){
+            console.log("x: ", X)
+            console.log("y: ", Y)
+            alert("eat food");
+            this.food.change();
+            this.scorePanel.addScore();
+            this.snake.extendBody();
+        }
+    }
 }
 export default Control;
