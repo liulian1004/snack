@@ -2,6 +2,8 @@ class Food{
     element:HTMLElement; //the type is HTMLElement
     constructor(){
         this.element = document.getElementById("food")!;
+        console.log("food: ", document.getElementById("food"));
+        console.log("snake: ", document.getElementById("snake"));
     }
     // get the food x position
     get X() {
@@ -22,7 +24,8 @@ class Food{
     }
 }
 
-
+const food = new Food();
+console.log("X", food.element)
 
 export default Food;
 

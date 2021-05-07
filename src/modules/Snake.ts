@@ -2,19 +2,21 @@ class Snake{
 
     element: HTMLElement;
     head:HTMLElement;
-   // bodies: HTMLCollection;
+    bodies: HTMLCollection;
     
     constructor(){
-        this.element = document.getElementById('snake') as HTMLElement;
+        this.element = document.getElementById("snake")!;
         //get the query of first element
-        this.head= document.querySelector('#snake > div') as HTMLElement;
+        this.head = document.querySelector('#snake > div') as HTMLElement;
+        //console.log("food in snake: ",document.getElementById("food"));
+        //console.log("element_0", document.getElementById("snake"));
         //get the all elements inside of snake div
-        //this.bodies = this.element.getElementsByTagName("div")
+        this.bodies = this.element.getElementsByTagName("div")
         
     }
 
     getHeadX(){
-        return this.head.offsetLeft;
+       return this.head.offsetLeft;
     }
 
     getHeadY(){
@@ -34,4 +36,9 @@ class Snake{
     }
 
 }
+
+const snake = new Snake();
+console.log("header0: ", snake.head);
+console.log("element: ", snake.element);
+
 export default Snake;

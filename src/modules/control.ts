@@ -65,7 +65,7 @@ class Control{
             break;
         }
         this.snake.headX= X;
-        this.snake.headY = Y;
+       this.snake.headY = Y;
         //every 300ms trigger move() 
         // so that the move will keep triggering
         setTimeout(this.move.bind(this), 300)
