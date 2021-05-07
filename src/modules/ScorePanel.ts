@@ -24,6 +24,7 @@ class ScorePanel{
         if(this.score%this.upScore === 0 ){
             this.updateLevel();
         }
+    
     }
     private updateLevel(){
         if(this.level < this.maxLevel) {

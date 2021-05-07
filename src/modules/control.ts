@@ -8,6 +8,7 @@ class Control{
     food: Food;
     scorePanel: ScorePanel;
     isLive: boolean;
+    isPause: boolean;
 
     //keep keyboard direction
     direction: string = '';
@@ -17,6 +18,7 @@ class Control{
         this.food = new Food();
         this.scorePanel = new ScorePanel();
         this.isLive = true;
+        this.isPause = false;
         this.init();
     }
 
@@ -47,7 +49,9 @@ class Control{
     private move(){
         let X = this.snake.getHeadX();
         let Y = this.snake.getHeadY();
-        
+        console.log("X:", X);
+        console.log("Y:", Y);
+        console.log("direction:", this.direction)
         switch(this.direction){
             case "ArrowUp":
             case "Up":
@@ -65,12 +69,15 @@ class Control{
             case "Right":
                 X += 10;
             break;
+            case "Enter":
+                this.isPause = true;
+            break;
         }
         this.eat(X,Y);
 
         try{
-            this.snake.headX = X;
-            this.snake.headY = Y;
+            this.snake.setHeadX(X);
+            this.snake.setHeadY(Y);
         }catch (e){
             alert(e.message);
             this.isLive = false;
@@ -78,7 +85,8 @@ class Control{
         
         //every 300ms trigger move() , and move faster based on the level
         // so that the move will keep triggering
-        if(this.isLive){
+        if(this.isLive && !this.isPause){
+            console.log("time: ", 300-(this.scorePanel.level-1)*30)
              setTimeout(this.move.bind(this), 300-(this.scorePanel.level-1)*30)
         }
 
@@ -86,9 +94,6 @@ class Control{
     }
     private eat(X:number, Y:number) {
         if(this.food.X === X && this.food.Y === Y ){
-            console.log("x: ", X)
-            console.log("y: ", Y)
-            alert("eat food");
             this.food.change();
             this.scorePanel.addScore();
             this.snake.extendBody();
